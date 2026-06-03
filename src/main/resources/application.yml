@@ -1,0 +1,91 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      routes:
+        # ----- ms-administracion -----
+        - id: ms-administracion-auth
+          uri: lb://ms-administracion
+          predicates:
+            - Path=/api/auth/**
+        - id: ms-administracion-usuarios
+          uri: lb://ms-administracion
+          predicates:
+            - Path=/api/usuarios/**
+        - id: ms-administracion-roles
+          uri: lb://ms-administracion
+          predicates:
+            - Path=/api/roles/**
+        - id: ms-administracion-modulos
+          uri: lb://ms-administracion
+          predicates:
+            - Path=/api/modulos/**
+        - id: ms-administracion-catalogo
+          uri: lb://ms-administracion
+          predicates:
+            - Path=/api/catalogo/**
+
+        # ----- ms-proyectos -----
+        - id: ms-proyectos-proyectos
+          uri: lb://ms-proyectos
+          predicates:
+            - Path=/api/proyectos/**
+        - id: ms-proyectos-subproyectos
+          uri: lb://ms-proyectos
+          predicates:
+            - Path=/api/subproyectos/**
+        - id: ms-proyectos-tareas
+          uri: lb://ms-proyectos
+          predicates:
+            - Path=/api/tareas/**
+
+        # ----- ms-seguimiento -----
+        - id: ms-seguimiento-asignaciones
+          uri: lb://ms-seguimiento
+          predicates:
+            - Path=/api/asignaciones/**
+        - id: ms-seguimiento-actividades
+          uri: lb://ms-seguimiento
+          predicates:
+            - Path=/api/actividades/**
+        - id: ms-seguimiento-bitacora
+          uri: lb://ms-seguimiento
+          predicates:
+            - Path=/api/bitacora/**
+        - id: ms-seguimiento-variaciones
+          uri: lb://ms-seguimiento
+          predicates:
+            - Path=/api/variaciones/**
+        - id: ms-seguimiento-linea-base
+          uri: lb://ms-seguimiento
+          predicates:
+            - Path=/api/linea-base/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8761/eureka/}
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret: ${JWT_SECRET:cambiar-esta-clave-en-produccion-minimo-32-bytes-aleatorios}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    health:
+      show-details: always
