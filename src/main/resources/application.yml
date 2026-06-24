@@ -68,6 +68,14 @@ spring:
           uri: lb://ms-seguimiento
           predicates:
             - Path=/api/linea-base/**
+        - id: ms-seguimiento-carga
+          uri: lb://ms-seguimiento
+          predicates:
+            - Path=/api/carga/**
+        - id: ms-seguimiento-avance
+          uri: lb://ms-seguimiento
+          predicates:
+            - Path=/api/avance/**
 
 eureka:
   client:
