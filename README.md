@@ -9,12 +9,12 @@ El stack completo se orquesta desde el repo
 
 ## Datos del servicio
 
-| | |
-|---|---|
-| Puerto | **8080** |
-| Base de datos | — (no usa) |
-| Paquete base | `pe.unir.tfm.srp.gateway` |
-| Stack | Java 21 · Spring Boot 3.5.14 · Spring Cloud Gateway (WebFlux) · JWT HS256 |
+|               |                                                                           |
+| ------------- | ------------------------------------------------------------------------- |
+| Puerto        | **8080**                                                                  |
+| Base de datos | — (no usa)                                                                |
+| Paquete base  | `pe.unir.tfm.srp.gateway`                                                 |
+| Stack         | Java 25 · Spring Boot 3.5.14 · Spring Cloud Gateway (WebFlux) · JWT HS256 |
 
 ## Cómo se levanta
 
@@ -36,11 +36,11 @@ mvn spring-boot:run
 
 ## Ruteo (prefijo → microservicio)
 
-| Prefijo | Destino |
-|---|---|
-| `/api/auth/**`, `/api/usuarios/**`, `/api/roles/**`, `/api/modulos/**`, `/api/catalogo/**` | `ms-administracion` |
-| `/api/proyectos/**`, `/api/subproyectos/**`, `/api/tareas/**` | `ms-proyectos` |
-| `/api/asignaciones/**`, `/api/actividades/**`, `/api/bitacora/**`, `/api/linea-base/**`, `/api/variaciones/**` | `ms-seguimiento` |
+| Prefijo                                                                                                        | Destino             |
+| -------------------------------------------------------------------------------------------------------------- | ------------------- |
+| `/api/auth/**`, `/api/usuarios/**`, `/api/roles/**`, `/api/modulos/**`, `/api/catalogo/**`                     | `ms-administracion` |
+| `/api/proyectos/**`, `/api/subproyectos/**`, `/api/tareas/**`                                                  | `ms-proyectos`      |
+| `/api/asignaciones/**`, `/api/actividades/**`, `/api/bitacora/**`, `/api/linea-base/**`, `/api/variaciones/**` | `ms-seguimiento`    |
 
 Público (sin JWT): `/api/auth/**` (login) y `/actuator/**`. El resto exige token válido.
 
@@ -52,5 +52,5 @@ Público (sin JWT): `/api/auth/**` (login) y `/actuator/**`. El resto exige toke
 
 ## Requisitos
 
-- **Docker Desktop 24+** (vía el repo `orquestacion`), **o** Java 21 + Maven 3.9+ para
+- **Docker Desktop 24+** (vía el repo `orquestacion`), **o** Java 25 + Maven 3.9+ para
   correr el gateway en local.
