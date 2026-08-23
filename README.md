@@ -14,7 +14,7 @@ El stack completo se orquesta desde el repo
 | Puerto        | **8080**                                                                  |
 | Base de datos | — (no usa)                                                                |
 | Paquete base  | `pe.unir.tfm.srp.gateway`                                                 |
-| Stack         | Java 25 · Spring Boot 3.5.14 · Spring Cloud Gateway (WebFlux) · JWT HS256 |
+| Stack         | Java 17 · Spring Boot 4.1.1 · Spring Cloud 2025.1.2 · Spring Cloud Gateway (WebFlux) · JWT HS256 |
 
 ## Cómo se levanta
 
@@ -52,5 +52,6 @@ Público (sin JWT): `/api/auth/**` (login) y `/actuator/**`. El resto exige toke
 
 ## Requisitos
 
-- **Docker Desktop 24+** (vía el repo `orquestacion`), **o** Java 25 + Maven 3.9+ para
-  correr el gateway en local.
+- **Docker Desktop 24+** (vía el repo `orquestacion`), **o** **JDK 17 o superior** para
+  correr el gateway en local. Maven no hace falta: el servicio trae su wrapper
+  (`mvnw` / `mvnw.cmd`).
